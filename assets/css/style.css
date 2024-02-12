@@ -3,3 +3,11 @@
     padding: 0;
     margin: 0;
 }
+
+.section-filters {
+    width: 60%;
+}
+
+.section-graphics {
+    width: 40%;
+}
