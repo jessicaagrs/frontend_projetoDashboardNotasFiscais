@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -19,7 +19,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="#">Invoice Soft</a>
-            <i class="bi bi-person-circle" style="font-size: 2rem; color: cornflowerblue; cursor: pointer;"></i>
+            <i class="bi bi-person-circle" style="font-size: 2rem; color: cornflowerblue; cursor: pointer;" id="icon-user"></i>
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
@@ -58,8 +58,9 @@
                         </li>
                     </ul>
                     <form class="d-flex mt-3" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+                        <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search"
+                            id="input-Search">
+                        <button class="btn btn-outline-success" type="submit" id="btn-Search">Pesquisar</button>
                     </form>
                 </div>
             </div>
@@ -78,6 +79,7 @@
         </script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="module" src="../js/index.js"></script>
 </body>
 
 </html>
