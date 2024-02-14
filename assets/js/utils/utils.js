@@ -42,35 +42,3 @@ export function formatterDate(monthYear) {
   return dateFilter;
 }
 
-export function createTable(data) {
-  let tableHtml = `
-  <table class="table table-striped">
-      <thead>
-          <tr>
-              <th scope="col">Período</th>
-              <th scope="col">Notas Emitidas</th>
-              <th scope="col">Notas a Cobrar</th>
-              <th scope="col">Notas Vencidas</th>
-              <th scope="col">Notas a Vencer</th>
-              <th scope="col">Notas Pagas</th>
-          </tr>
-      </thead>
-      <tbody>
-          ${data.map(e => `
-              <tr>
-                  <td>${e.period}</td>
-                  <td>${e.notesIssued}</td>
-                  <td>${e.notesToCollect}</td>
-                  <td>${e.notesExpired}</td>
-                  <td>${e.notesPaid}</td>
-                  <td>${e.notesDue}</td>
-              </tr>
-          `).join('')}
-      </tbody>
-  </table>
-`;
-
-  $("#table").empty();
-  $("#table").removeClass("d-none");
-  $("#table").append(tableHtml);
-};
