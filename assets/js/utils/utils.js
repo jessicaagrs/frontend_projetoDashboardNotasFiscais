@@ -42,3 +42,41 @@ export function formatterDate(monthYear) {
   return dateFilter;
 }
 
+
+export function createTable(data) {
+  let tableHtml = `
+  <table class="table table-striped">
+      <thead>
+          <tr>
+              <th class="text-nowrap" scope="col">Nome do Pagador</th>
+              <th class="text-nowrap" scope="col">Número da Nota</th>
+              <th class="text-nowrap" scope="col">Data de Emissão</th>
+              <th class="text-nowrap" scope="col">Data de Cobrança</th>
+              <th class="text-nowrap" scope="col">Data do Pagamento</th>
+              <th class="text-nowrap" scope="col">Valor da Nota</th>
+              <th class="text-nowrap" scope="col">Documento Nota Fiscal</th>
+              <th class="text-nowrap" scope="col">Documento Boleto Bancário</th>
+              <th class="text-nowrap" scope="col">Status</th>
+          </tr>
+      </thead>
+      <tbody>
+          ${data.map(e => `
+              <tr>
+                  <td class="text-nowrap">${e.nomePagador}</td>
+                  <td class="text-nowrap">${e.numeroNota}</td>
+                  <td class="text-nowrap">${e.dataEmissao}</td>
+                  <td class="text-nowrap">${e.dataCobranca}</td>
+                  <td class="text-nowrap">${e.dataPagamento}</td>
+                  <td class="text-nowrap">${e.valorNota}</td>
+                  <td class="text-nowrap">${e.documentoNota}</td>
+                  <td class="text-nowrap">${e.documentoBoleto}</td>
+                  <td class="text-nowrap">${e.status}</td>
+              </tr>
+          `).join('')}
+      </tbody>
+  </table>
+`;
+
+  $("#table").empty();
+  $("#table").append(tableHtml);
+};

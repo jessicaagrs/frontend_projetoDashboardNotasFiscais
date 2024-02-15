@@ -16,8 +16,8 @@
     <title>Invoice Soft - Dashboard</title>
 </head>
 
-<body class="d-flex flex-column bg-secondary-subtle">
-    <nav class="navbar bg-dark" data-bs-theme="dark">
+<body>
+    <nav class="navbar bg-dark w-100" data-bs-theme="dark">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -73,8 +73,8 @@
         </div>
     </nav>
 
-    <main class="container-lg bg-white mt-3 rounded">
-        <section class="mt-3">
+    <main class="container-fluid d-flex flex-column bg-white mt-3 rounded">
+        <section class="mt-3 d-flex flex-column ms-5">
             <h2 class="fs-2 mt-4">Olá, bem vindo!</h2>
             <div class="d-flex align-items-center gap-3 mt-4">
                 <div class="d-flex align-items-center gap-3 w-25">
@@ -95,7 +95,7 @@
                 </div>
             </div>
         </section>
-        <section class="mt-sm-5 d-flex gap-3 m-3 flex-wrap">
+        <section class="mt-sm-5 d-flex gap-3 m-3 justify-content-center flex-wrap">
             <div class="card mb-3 shadow rounded" style="width: 15rem;">
                 <div class="card-header text-center">Total de Notas Emitidas</div>
                 <div class="card-body">
@@ -127,10 +127,18 @@
                 </div>
             </div>
         </section>
-        <section class="d-flex gap-3" style="width: 600px;">
-            <canvas id="chartInvoicesExpired"></canvas>
-            <canvas id="chartInvoicesPaid"></canvas>
+        <section id="container-chart" class="d-flex gap-5 m-5 justify-content-around">
+            <div class="canvas">
+                <canvas id="chartInvoicesExpired"></canvas>
+            </div>
+            <div class="canvas">
+                <canvas id="chartInvoicesPaid"></canvas>
+            </div>
         </section>
     </main>
+    <footer class="bg-dark p-3 text-white d-flex justify-content-center">
+        &copy; Jessica Aguiar
+    </footer>
 </body>
+
 </html>

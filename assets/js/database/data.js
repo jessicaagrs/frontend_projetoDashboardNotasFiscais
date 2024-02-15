@@ -7166,7 +7166,7 @@ export const DATA_INVOICES = [
         "id": 552,
         "nomePagador": "Verna Lendon",
         "numeroNota": 4591,
-        "dataEmissao": "2024/01/25",
+        "dataEmissao": "2024/02/14",
         "dataCobranca": "2023/10/14",
         "dataPagamento": "2023/08/29",
         "valorNota": 73986.95,

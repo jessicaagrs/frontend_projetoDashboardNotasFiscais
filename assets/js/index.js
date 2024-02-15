@@ -5,6 +5,16 @@ const MESSAGE_NOT_IMPLEMENTATION = "Funcionalidade ainda não implementada.";
 const MESSAGE_INPUT_NOT_EMPTY = "O campo não pode ser vazio.";
 const MESSAGE_INTERVAL_QUARTER = "O intervalo de datas deve ser de 3 meses.";
 const MONTH_OF_YEAR = 12;
+const TYPE_CHART = "bar";
+const TITLE_CHART = {
+    expired: "Notas com Inadimplência",
+    paid: "Faturamento"
+};
+const COLOR_CHART = {
+    month: ['rgba(255,206,86,0.2)'],
+    quarter: ['rgba(75,192,192,0.2)', 'rgba(255,206,86,0.2)', 'rgba(75,192,192,0.2)'],
+    year: ['rgba(75,192,192,0.2)', 'rgba(255,206,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(255,206,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(255,206,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(255,206,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(255,206,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(255,206,86,0.2)']
+};
 
 $(document).ready(function () {
 
@@ -51,6 +61,7 @@ $(document).ready(function () {
 
     $("#btn-consult").click(function (e) {
         let optionFilterSelected = $("#select-periods").val();
+        clearChart();
         formatDataToCreateCards(optionFilterSelected);
     });
 
@@ -59,8 +70,15 @@ $(document).ready(function () {
     const year = today.getFullYear();
     const dateToday = (month < 10 ? '0' : '') + month + '/' + year;
     createDataForMonth(dateToday);
-    createCharts();
 });
+
+function clearChart() {
+    $("#container-chart").empty();
+    const canvasElementExpired = $('<div class="w-50"><canvas id="chartInvoicesExpired" style="height: 600px;"></canvas></div>');
+    const canvasElementPaid = $('<div class="w-50"><canvas id="chartInvoicesPaid" style="height: 800px;"></canvas></div>');
+    $("#container-chart").append(canvasElementExpired);
+    $("#container-chart").append(canvasElementPaid);
+}
 
 function formatDataToCreateCards(optionFilterSelected) {
     let dateBegin = $("#period1").val();
@@ -97,7 +115,7 @@ function createDataForQuarter(dateBegin, dateEnd) {
 
     let rangeDates = getDateRange(dateBegin, dateEnd);
 
-    if (rangeDates.length > 3) {
+    if (rangeDates.length != 3) {
         createAndShowModalNotice(MESSAGE_INTERVAL_QUARTER);
         return;
     }
@@ -159,13 +177,23 @@ const formatDataForMonth = (data, monthYear) => {
             return dateIssuance.getMonth() + 1 === monthDateFilter && dateIssuance.getFullYear() === yearDateFilter && datePayment.getTime() > dateIssuance.getTime();
         }).length;
 
+        let totalValueNotesPaid = data.reduce((total, d) => {
+            let dateIssuance = new Date(d.dataEmissao);
+            if (dateIssuance.getMonth() + 1 === monthDateFilter && dateIssuance.getFullYear() === yearDateFilter && d.status === 'Pagamento realizado') {
+                return Number(total + parseFloat(d.valorNota).toFixed(2));
+            } else {
+                return Number(total);
+            }
+        }, 0);
+
         return {
             period: `${monthDateFilter}/${yearDateFilter}`,
             notesIssued,
             notesToCollect,
             notesExpired,
             notesPaid,
-            notesDue
+            notesDue,
+            totalValueNotesPaid
         };
 
     } catch (error) {
@@ -246,6 +274,13 @@ function createInfoCards(data) {
 
 function createCharts(data, container, type, title) {
     if (data != undefined) {
+
+        let colorChart = [];
+        if (data.months.length == 12) colorChart = COLOR_CHART.year;
+        else if (data.months.length == 3) colorChart = COLOR_CHART.quarter;
+        else if (data.months.length == 1) colorChart = COLOR_CHART.month;
+        else colorChart = COLOR_CHART.month;
+
         new Chart(container, {
             type: type,
             data: {
@@ -254,7 +289,7 @@ function createCharts(data, container, type, title) {
                     label: 'Quantidade total por Mês',
                     data: data.values,
                     borderWidth: 2,
-                    backgroundColor: ['rgba(75,192,192,0.2)', 'rgba(255,206,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(255,206,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(255,206,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(255,206,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(255,206,86,0.2)', 'rgba(75,192,192,0.2)', 'rgba(255,206,86,0.2)'],
+                    backgroundColor: colorChart,
                     borderColor: '#A3CCAB'
                 }]
             },
@@ -278,6 +313,7 @@ function createCharts(data, container, type, title) {
 }
 function createDataNotesExpiredChart(data) {
     if (data.length > 0) {
+
         const ctx = $('#chartInvoicesExpired');
         const months = [];
         const values = [];
@@ -292,60 +328,28 @@ function createDataNotesExpiredChart(data) {
             values
         };
 
-        createCharts(contentChart, ctx, 'bar', 'Notas com Inadimplência');
+        createCharts(contentChart, ctx, TYPE_CHART, TITLE_CHART.expired);
     }
 }
 
 function createDataNotesPaidChart(data) {
-    if (DATA_INVOICES.length > 0) {
+    if (data.length > 0) {
+
         const ctx = $('#chartInvoicesPaid');
+        const months = [];
+        const values = [];
 
-        const periods = [];
-        data.forEach(e => {
-            periods.push(e.period);
+        data.forEach(item => {
+            months.push(item.period);
+            values.push(item.totalValueNotesPaid);
         });
-
-        let notesExpired = DATA_INVOICES.filter(d => {
-            const [year, month] = d.dataEmissao.split('/');
-            const dataEmissao = `${month}/${year}`;
-            return d.status === 'Pagamento realizado' && periods.includes(dataEmissao);
-        });
-
-        const totalNotesExpiredForMonth = {};
-
-        notesExpired.forEach(note => {
-            const [year, month] = note.dataCobranca.split('/');
-
-            const key = `${month}/${year}`;
-
-            if (totalNotesExpiredForMonth[key]) {
-                totalNotesExpiredForMonth[key] += parseFloat(note.valorNota).toFixed(2);
-            } else {
-                totalNotesExpiredForMonth[key] = parseFloat(note.valorNota).toFixed(2);
-            }
-        });
-
-        const totalNotesExpiredArray = Object.entries(totalNotesExpiredForMonth);
-
-        totalNotesExpiredArray.sort((a, b) => {
-            const dateA = new Date(a[0].split('/').reverse().join('/'));
-            const dateB = new Date(b[0].split('/').reverse().join('/'));
-            return dateB - dateA;
-        });
-
-        const totalNotesExpiredOrderByDate = totalNotesExpiredArray.slice(0, 12);
-
-        const totalNotesExpiredOrderByDateObject = Object.fromEntries(totalNotesExpiredOrderByDate);
-
-        const months = Object.keys(totalNotesExpiredOrderByDateObject);
-        const values = Object.values(totalNotesExpiredOrderByDateObject);
 
         const contentChart = {
             months,
             values
         };
 
-        createCharts(contentChart, ctx, 'line', 'Faturamento');
+        createCharts(contentChart, ctx, TYPE_CHART, TITLE_CHART.paid);
     }
 }
 
