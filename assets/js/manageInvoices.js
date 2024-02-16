@@ -120,14 +120,14 @@ function createDataForTable(typeFilter = '', contentFilter = '') {
 function createHTMLPagination(arraysDivided) {
     let listPaginationHTML = `
     <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Anterior</a></li>`;
+    <li class="page-item"><a class="page-link text-dark" href="#">Anterior</a></li>`;
 
     for (let i = 0; i < arraysDivided.length; i++) {
-        listPaginationHTML += `<li class="page-item"><a class="page-link" href="#">${i + 1}</a></li>`;
+        listPaginationHTML += `<li class="page-item text-dark"><a class="page-link text-dark" href="#">${i + 1}</a></li>`;
     }
 
     listPaginationHTML += `
-    <li class="page-item"><a class="page-link" href="#">Próximo</a></li>
+    <li class="page-item"><a class="page-link text-dark" href="#">Próximo</a></li>
   </ul>`;
 
     $("#pagination").empty();
