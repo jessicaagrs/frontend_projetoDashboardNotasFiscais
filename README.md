@@ -1,4 +1,4 @@
-<h1>Sistema de Notas Gerenciamento de Notas Fiscais</h1> 
+<h1>Sistema de Gerenciamento de Notas Fiscais</h1> 
 
 <p align="center">
   <img src="https://uploaddeimagens.com.br/images/004/413/679/full/javacript.png?1680281578"/> 
