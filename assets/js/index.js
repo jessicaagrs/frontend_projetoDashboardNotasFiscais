@@ -4,6 +4,7 @@ import { DATA_INVOICES } from "./database/data.js";
 const MESSAGE_NOT_IMPLEMENTATION = "Funcionalidade ainda não implementada.";
 const MESSAGE_INPUT_NOT_EMPTY = "O campo não pode ser vazio.";
 const MESSAGE_INTERVAL_QUARTER = "O intervalo de datas deve ser de 3 meses.";
+const MESSAGE_NO_DATA = "Sistema ainda não possui notas cadastradas";
 const MONTH_OF_YEAR = 12;
 const TYPE_CHART = "bar";
 const TITLE_CHART = {
@@ -60,6 +61,8 @@ $(document).ready(function () {
     });
 
     $("#btn-consult").click(function (e) {
+        if(DATA_INVOICES.length == 0) createAndShowModalNotice(MESSAGE_NO_DATA);
+
         let optionFilterSelected = $("#select-periods").val();
         clearChart();
         formatDataToCreateCards(optionFilterSelected);

@@ -30,3 +30,9 @@ footer {
 .canvas {
     width: 55%;
 }
+
+.footerNotData {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
