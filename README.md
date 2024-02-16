@@ -41,32 +41,44 @@ Status do Projeto: :heavy_check_mark: <!-- > :heavy_check_mark:--> Concluído <!
 
 ![N|Solid](https://uploaddeimagens.com.br/images/004/741/171/full/Screenshot_1.png?1708094419)
 
-Tela inicial que no primeiro carregamento traz os dados do mes atual  se houver. Nos cards é mostrado o tal de notas por situação.
+
+:heavy_check_mark: Tela inicial que no primeiro carregamento traz os dados do mês atual  se houver. Nos cards é mostrado o total de notas por situação.
+
 
 ![N|Solid](https://uploaddeimagens.com.br/images/004/741/173/full/Screenshot_6.png?1708094546)
 
-No filtro da dashboard tem as opções por mês, trimestre e ano sendo necessário clicar no botão consultar. Em seguida cards e gráficos são atualizados com período selecionado.
+
+:heavy_check_mark: No filtro da dashboard tem as opções por mês, trimestre e ano sendo necessário clicar no botão consultar. Em seguida cards e gráficos são atualizados com período selecionado.
+
 
 ![N|Solid](https://uploaddeimagens.com.br/images/004/741/179/full/Screenshot_2.png?1708094671)
 
-Gráficos utilizados.
+
+:heavy_check_mark: Gráficos utilizados.
+
 
 ![N|Solid](https://uploaddeimagens.com.br/images/004/741/182/full/Screenshot_3.png?1708094727)
 
-Menu lateral da página, somente as páginas Dashboard e Gerenciar Notas Fiscais foram implementadas nessa versão, as demais mostraram uma mensagem de implementação em andamento.
+
+:heavy_check_mark: Menu lateral da página, somente as páginas Dashboard e Gerenciar Notas Fiscais foram implementadas nessa versão, as demais mostrarão uma mensagem de implementação em andamento.
 
 
 ![N|Solid](https://uploaddeimagens.com.br/images/004/741/187/full/Screenshot_4.png?1708094849)
 
-Visão inicial da página Gerenciar Notas Fiscais, renderizado as notas se já houver dados. A título de mostrar informações de exemplo criei um array de dados fictícios que no código fonte está em js/database.
+
+:heavy_check_mark: Visão inicial da página Gerenciar Notas Fiscais, é renderizado as notas se já houver dados. A título de mostrar informações de exemplo, criei um array de dados fictícios que no código fonte está em js/database.
+
 
 ![N|Solid](https://uploaddeimagens.com.br/images/004/741/190/full/Screenshot_7.png?1708095015)
 
-Filtro da página Gerenciar Notas Fiscais, ao clicar em uma opção acima, um novo select é aberto com mais opções de escolha, as mesmas são obtidas dos dados fictícios, não sendo necessário digitar um período e sim escolher apenas aqueles que possuem dados. O botão limpar filtro limpa os filtros e retorna ao estado inicial.
+
+:heavy_check_mark: Filtro da página Gerenciar Notas Fiscais, ao clicar em uma opção acima, um novo select é aberto com mais opções de escolha, as mesmas são obtidas dos dados fictícios, não sendo necessário digitar um período e sim escolher apenas aqueles que possuem dados. O botão limpar filtro limpa os filtros e retorna ao estado inicial.
+
 
 ![N|Solid](https://uploaddeimagens.com.br/images/004/741/199/original/Screenshot_5.png?1708095324)
 
-Por fim temos uma paginação de acordo com a quantidade de dados, renderizado 50 itens por vez.
+
+:heavy_check_mark: Por fim, temos uma paginação de acordo com a quantidade de dados, renderizado 50 itens por vez.
 
 
 <!-- ## Pré-requisitos
