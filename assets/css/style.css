@@ -24,7 +24,7 @@ body {
 }
 
 
-@media (max-width: 1440px){
+@media (max-width: 1440px) {
     #container-chart {
         display: flex;
         flex-direction: column;
@@ -32,13 +32,27 @@ body {
     }
 }
 
-@media (max-width: 800px){
+@media (max-width: 800px) {
     .canvas {
         width: 75%;
     }
 }
 
-@media (max-width: 414px){
+@media (max-width: 768px) {
+    #container-filters-dash {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+
+    #container-filters-dash div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+@media (max-width: 414px) {
     .canvas {
         width: 95%;
     }
