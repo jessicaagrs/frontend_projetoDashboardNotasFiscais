@@ -4,19 +4,11 @@
     margin: 0;
 }
 
-html {
-    height: 100%;
-    min-height: 100%;
-}
-
 body {
     display: flex;
     flex-direction: column;
     min-height: 100%;
-}
-
-footer {
-    margin-top: auto;
+    position: relative;
 }
 
 .section-filters {
@@ -31,8 +23,23 @@ footer {
     width: 55%;
 }
 
-.footerNotData {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+
+@media (max-width: 1440px){
+    #container-chart {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+}
+
+@media (max-width: 800px){
+    .canvas {
+        width: 75%;
+    }
+}
+
+@media (max-width: 414px){
+    .canvas {
+        width: 95%;
+    }
 }

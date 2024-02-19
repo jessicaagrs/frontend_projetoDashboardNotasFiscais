@@ -46,7 +46,7 @@ export function formatterDate(monthYear) {
 
 export function createTable(data) {
   let tableHtml = `
-    <table class="table table-striped">
+    <table class="table-striped table" style="width: 100%">
       <thead>
           <tr>
               <th class="text-nowrap" scope="col">Nome do Pagador</th>
@@ -93,8 +93,6 @@ export function createTable(data) {
       </tbody>
     </table>
   `;
-
-  data === undefined ? $('#footer').addClass('footerNotData') : $('#footer').removeClass('footerNotData');
 
   $("#table").empty();
   $("#table").append(tableHtml);

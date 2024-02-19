@@ -73,7 +73,7 @@
             </div>
         </div>
     </nav>
-    <main class="container-fluid mt-4 d-flex flex-column gap-3">
+    <main class="container-fluid mt-4 d-flex flex-column gap-3 overflow-auto">
         <div class="d-flex flex-column gap-3">
             <div>
                 <h2>Listagem Notas Emitidas</h2>
@@ -104,11 +104,12 @@
                 <button type="button" class="btn btn-primary text-nowrap" id="btn-clearFilter">Limpar Filtro</button>
             </div>
         </div>
-        <div id="table" class="p-2 d-flex justify-content-center"></div>
-        <div id="pagination" class="d-flex align-items-center justify-content-center"></div>
+        <div id="table" class="table-responsive"></div>
+        <div id="pagination" class="d-flex align-items-center justify-content-center w-100 mb-5 overflow-auto"></div>
     </main>
 
-    <footer class="bg-dark p-3 mt-3 text-white d-flex justify-content-center w-100" id="footer">
+    <footer class="bg-dark p-1 text-white d-flex justify-content-center w-100 position-absolute"
+        style="bottom: 0; left: 0;" id="footer">
         &copy; Jessica Aguiar
     </footer>
 </body>
