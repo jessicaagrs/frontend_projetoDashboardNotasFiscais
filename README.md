@@ -101,7 +101,7 @@ Utilizar Live Server para executar o projeto no navegador.
 
 ```
 
-Para acessar a página agora mesmo no navegador [CLIQUE AQUI](https://desafio-dashboard-notas-fiscais-kgj1rx9lz-jessicaagrs.vercel.app)
+Para acessar a página agora mesmo no navegador [CLIQUE AQUI](https://desafio-dashboard-notas-fiscais.vercel.app/)
 <!-- ## Como rodar os testes
 
 Coloque um passo a passo para executar os testes
